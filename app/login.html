@@ -1,0 +1,27 @@
+<html>
+<head>
+    <script src="/store.js"></script>
+</head>
+<body>
+    <h2>Store Site</h2>
+    <div id="user-info">Not logged in</div>
+    <hr>
+    <div>
+        Login | 
+        <a href="register.html">Register</a> |
+        <a href="accounts.html">Accounts</a>
+        <a href="javascript:logout();">Logout</a>
+    </div>
+    <div>
+        <h3>Login</h3>
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email"><br>
+        <label for="password">Password:</label><br>
+        <input type="password" id="password" name="password"><br><br>
+        <input type="button" value="Login" onclick="javascript:login();">
+    </div>
+    <script>
+        whoiam();
+    </script>
+</body>
+</html>
