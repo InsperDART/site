@@ -1,0 +1,31 @@
+<html>
+<head>
+    <script src="/store.js"></script>
+</head>
+<body>
+    <h2>Store Site</h2>
+    <div>
+        <a href="login.html">Login</a> |
+        <a href="register.html">Register</a> |
+        <a href="accounts.html">Accounts</a> |
+        <a href="products.html">Products</a> |
+        <a href="orders.html">Orders</a> |
+        <a href="exchange.html">Exchange</a>
+    </div>
+    <div>
+        <h3>Create Product</h3>
+        <label>Name:</label><br>
+        <input type="text" id="product-name"><br>
+        <label>Price:</label><br>
+        <input type="number" id="product-price" step="0.01"><br>
+        <label>Stock:</label><br>
+        <input type="number" id="product-stock"><br><br>
+        <input type="button" value="Create Product" onclick="createProduct();">
+    </div>
+    <div>
+        <h3>Products</h3>
+        <input type="button" value="Load Products" onclick="loadProducts();">
+        <ul id="productList"></ul>
+    </div>
+</body>
+</html>

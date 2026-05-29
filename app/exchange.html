@@ -1,0 +1,28 @@
+<html>
+<head>
+    <script src="/store.js"></script>
+</head>
+<body>
+    <h2>Store Site</h2>
+    <div>
+        <a href="login.html">Login</a> |
+        <a href="register.html">Register</a> |
+        <a href="accounts.html">Accounts</a> |
+        <a href="products.html">Products</a> |
+        <a href="orders.html">Orders</a> |
+        <a href="exchange.html">Exchange</a>
+    </div>
+    <div>
+        <h3>Exchange Rate</h3>
+        <label>From:</label><br>
+        <input type="text" id="from-currency" placeholder="USD"><br>
+        <label>To:</label><br>
+        <input type="text" id="to-currency" placeholder="BRL"><br><br>
+        <input type="button" value="Get Rate" onclick="getExchangeRate();">
+    </div>
+    <div>
+        <h3>Result</h3>
+        <pre id="exchangeResult"></pre>
+    </div>
+</body>
+</html>
