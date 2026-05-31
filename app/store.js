@@ -1,6 +1,5 @@
 const API_BASE_URL = 'http://localhost:8080';
 
-// ─── AUTH ─────────────────────────────────────────────────────────────────────
 
 const register = async () => {
     const name = document.getElementById('name').value;
@@ -92,13 +91,13 @@ const loadAccounts = () => {
 const createProduct = async () => {
     const name = document.getElementById('product-name').value;
     const price = parseFloat(document.getElementById('product-price').value);
-    const stock = parseInt(document.getElementById('product-stock').value);
+    const unit = document.getElementById('product-unit').value;
 
     const response = await fetch(`${API_BASE_URL}/products`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',
-        body: JSON.stringify({ name, price, stock })
+        body: JSON.stringify({ name, price, unit })
     });
 
     if (response.ok) {
@@ -120,7 +119,7 @@ const loadProducts = () => {
             list.innerHTML = '';
             data.forEach(product => {
                 const li = document.createElement('li');
-                li.textContent = `[${product.id}] ${product.name} - R$ ${product.price} (stock: ${product.stock})`;
+                li.textContent = `[${product.id}] ${product.name} - R$ ${product.price} (unit: ${product.unit})`;
                 list.appendChild(li);
             });
         })
@@ -137,7 +136,11 @@ const createOrder = async () => {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',
-        body: JSON.stringify({ productId, quantity })
+        body: JSON.stringify({
+            items: [
+                { idProduct: productId, quantity: quantity }
+            ]
+        })
     });
 
     if (response.ok) {
@@ -153,19 +156,28 @@ const loadOrders = () => {
         method: 'GET',
         credentials: 'include'
     })
-        .then(response => response.json())
-        .then(data => {
-            const list = document.getElementById('orderList');
-            list.innerHTML = '';
-            data.forEach(order => {
-                const li = document.createElement('li');
-                li.textContent = `[${order.id}] Product: ${order.productId} - Qty: ${order.quantity} - Status: ${order.status}`;
-                list.appendChild(li);
-            });
-        })
-        .catch(error => console.error('Error fetching orders:', error));
-};
+    .then(async response => {
+        const data = await response.json();
 
+        if (!response.ok) {
+            console.error('Backend error:', data);
+            return;
+        }
+
+        const list = document.getElementById('orderList');
+        list.innerHTML = '';
+
+        data.forEach(order => {
+            const li = document.createElement('li');
+            li.textContent =
+                `[${order.id}] Product: ${order.productId} - Qty: ${order.quantity} - Status: ${order.status}`;
+            list.appendChild(li);
+        });
+    })
+    .catch(error => {
+        console.error('Error fetching orders:', error);
+    });
+};
 // ─── EXCHANGE ─────────────────────────────────────────────────────────────────
 
 const getExchangeRate = async () => {
@@ -184,3 +196,6 @@ const getExchangeRate = async () => {
         document.getElementById('exchangeResult').textContent = 'Failed to get exchange rate. Are you logged in?';
     }
 };
+
+whoiam();
+

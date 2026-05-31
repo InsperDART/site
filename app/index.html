@@ -1,13 +1,12 @@
 <html>
 <head>
-    <script src="/store.js"></script>
+    <script src="store.js" defer></script>
 </head>
 <body>
     <h2>Store Site</h2>
     <div id="user-info">Not logged in</div>
     <hr>
 
-    <!-- AUTH -->
     <div>
         <h3>Login</h3>
         <label>Email:</label><br>
@@ -19,7 +18,6 @@
     </div>
     <hr>
 
-    <!-- REGISTER -->
     <div>
         <h3>Register</h3>
         <label>Name:</label><br>
@@ -32,7 +30,6 @@
     </div>
     <hr>
 
-    <!-- ACCOUNTS -->
     <div>
         <h3>Accounts</h3>
         <input type="button" value="Load Accounts" onclick="loadAccounts();">
@@ -40,22 +37,20 @@
     </div>
     <hr>
 
-    <!-- PRODUCTS -->
     <div>
         <h3>Products</h3>
         <label>Name:</label><br>
         <input type="text" id="product-name"><br>
         <label>Price:</label><br>
         <input type="number" id="product-price" step="0.01"><br>
-        <label>Stock:</label><br>
-        <input type="number" id="product-stock"><br><br>
+        <label>Unit:</label><br>
+        <input type="text" id="product-unit"><br><br>
         <input type="button" value="Create Product" onclick="createProduct();">
         <input type="button" value="Load Products" onclick="loadProducts();">
         <ul id="productList"></ul>
     </div>
     <hr>
 
-    <!-- ORDERS -->
     <div>
         <h3>Orders</h3>
         <label>Product ID:</label><br>
@@ -68,7 +63,6 @@
     </div>
     <hr>
 
-    <!-- EXCHANGE -->
     <div>
         <h3>Exchange</h3>
         <label>From:</label><br>
@@ -78,9 +72,5 @@
         <input type="button" value="Get Rate" onclick="getExchangeRate();">
         <pre id="exchangeResult"></pre>
     </div>
-
-    <script>
-        whoiam();
-    </script>
 </body>
 </html>
